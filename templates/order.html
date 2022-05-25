@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container" style="margin-top:10px;">
+    <div class="row">
+
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{message}}
+                {% if 'success' in message.tags %}
+                <h6><a href="/">Home</a></h6>
+                {% endif %}
+            </div>
+            {% endfor %}
+            {% endif %}
+            <form class="p-3 shadow" method="POST">
+                <h2 style="text-align:center">Order</h2><br>
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" autocomplete="off" class="form-control" name="customer_name" placeholder="Enter Customer Name" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="text" autocomplete="off" class="form-control" name="customer_phone" placeholder="Enter Phone Number" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="email" autocomplete="off" class="form-control" name="customer_email" placeholder="Enter Email Address" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <textarea type="text" class="form-control" name="customer_address" placeholder="Enter Address" required></textarea>
+                </div>
+                <br>
+                <div class="form-group">
+                    <select class="form-control select2" id="district" name="district" width="100%" required>
+                        <option value="">--Select District--</option>
+                        {% for dist in districts %}
+                        <option value="{{dist.pk}}">{{dist.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <br>
+                <div class="form-group">
+                    <select class="form-control select2" id="center" name="center" width="100%" required>
+                        <option value="">--Select Center--</option>
+                    </select>
+                </div>
+                <br>
+                <div class="form-group">
+                    <select class="form-control select2" id="flower" name="flower" width="100%" required>
+                        <option value="">--Select Flower--</option>
+
+                    </select>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="text"autocomplete="off" class="form-control" name="quantity" id="quantity" placeholder="Enter Quantity" required>
+                </div>
+                <br>
+                 <div class="form-group">
+                     <input type="hidden" class="form-control" name="price" id="price" value="" required>
+                    <input type="text" autocomplete="off" class="form-control" name="total" id="total" placeholder="Total" required>
+                </div>
+                <br>
+                <div class="form-group" style="text-align: center">
+                    <div class="col-md-12">
+                        <input class="btn btn-success" type="submit" value="Submit">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

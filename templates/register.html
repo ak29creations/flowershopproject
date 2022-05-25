@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container" style="margin-top:125px;">
+    <div class="row">
+
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+            {% if messages %}
+            {% for msg in messages %}
+            <div class="alert alert-danger" role="alert">
+                {{msg}}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <form class="p-3 shadow" method="POST" action="register">
+                <h2 style="text-align:center">Register</h2><br>
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" autocomplete="off" class="form-control" name="username" placeholder="Enter Username" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="text" autocomplete="off" class="form-control" name="first_name" placeholder="Enter First Name" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="text" autocomplete="off" class="form-control" name="last_name" placeholder="Enter Last Name" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="email" autocomplete="off" class="form-control" name="email" placeholder="Enter Email Address" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="password" autocomplete="off" class="form-control" name="password" placeholder="Enter Password" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="password" autocomplete="off" class="form-control" name="confirm_password" placeholder="Confirm Password" required>
+                </div>
+                <br>
+
+                <div class="form-group" style="text-align: center">
+                    <div class="col-md-12">
+                        <input class="btn btn-success" type="submit" value="Submit">
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

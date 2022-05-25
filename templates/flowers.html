@@ -1,0 +1,4 @@
+<option value="">--Select Flower--</option>
+{% for flower in flowers %}
+<option value="{{ flower.pk }}" data-price="{{ flower.price }}">{{ flower.name }} - &#8377; {{ flower.price }}</option>
+{% endfor %}
